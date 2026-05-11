@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dino-ai/catalog/v1/schema",
+  "title": "dino-ai Model Catalog v1",
+  "description": "Schema for provider model catalog YAML files",
+  "type": "object",
+  "required": ["catalogVersion", "provider", "models"],
+  "properties": {
+    "catalogVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "provider": {
+      "type": "string",
+      "description": "Provider identifier (e.g. 'openai', 'anthropic')"
+    },
+    "defaultApi": {
+      "type": "string",
+      "description": "Default API protocol for models in this file"
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "Default base URL for this provider"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of last catalog update"
+    },
+    "models": {
+      "type": "object",
+      "description": "Map of model ID to model definition",
+      "additionalProperties": {
+        "$ref": "#/$defs/model"
+      }
+    }
+  },
+  "$defs": {
+    "model": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable display name"
+        },
+        "api": {
+          "type": "string",
+          "description": "Override API protocol (defaults to parent defaultApi)"
+        },
+        "baseUrl": {
+          "type": "string",
+          "description": "Override base URL"
+        },
+        "compatProfile": {
+          "type": "string",
+          "enum": ["OPENAI_NATIVE", "DEEPSEEK", "GROQ", "XAI", "OPENROUTER", "TOGETHER", "GENERIC"],
+          "description": "OpenAI-compat profile for openai-completions API models"
+        },
+        "capabilities": {
+          "$ref": "#/$defs/capabilities"
+        },
+        "limits": {
+          "$ref": "#/$defs/limits"
+        },
+        "pricing": {
+          "$ref": "#/$defs/pricing"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "reasoning": {
+          "type": "boolean",
+          "default": false
+        },
+        "vision": {
+          "type": "boolean",
+          "default": false
+        },
+        "toolCalling": {
+          "type": "boolean",
+          "default": true
+        },
+        "streaming": {
+          "type": "boolean",
+          "default": true
+        },
+        "supportedThinkingLevels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["off", "minimal", "low", "medium", "high", "xhigh"]
+          }
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "contextWindow": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxOutputTokens": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "description": "Cost per million tokens in USD",
+      "properties": {
+        "input": {
+          "type": "number",
+          "minimum": 0
+        },
+        "output": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cacheRead": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        },
+        "cacheWrite": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        }
+      }
+    }
+  }
+}
