@@ -33,6 +33,7 @@ jobs:
       - uses: astral-sh/setup-uv@v8.1.0
         with:
           version: "latest"
+          cache-suffix: "py${{ matrix.python-version }}"
 
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
@@ -61,7 +62,7 @@ jobs:
       - name: Check package
         run: cd packages/dino-ai-py && uv run twine check dist/*
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: packages/dino-ai-py/dist/
@@ -73,7 +74,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with:
           name: dist
           path: dist/
