@@ -37,10 +37,10 @@ release version:
     set -euo pipefail
     if [ -z "{{version}}" ]; then echo "Usage: just release <version>"; exit 1; fi
     # Update pyproject.toml
-    sed -i'' -e 's/^version = ".*"/version = "{{version}}"/' packages/dino-ai-py/pyproject.toml
+    sed -i '' 's/^version = ".*"/version = "{{version}}"/' packages/dino-ai-py/pyproject.toml
     # Update CHANGELOG heading
     today=$(date +%Y-%m-%d)
-    sed -i'' -e "s/^## \[Unreleased\]/## [Unreleased]\n\n## [{{version}}] - ${today}/" CHANGELOG.md
+    sed -i '' "s/^## \[Unreleased\]/## [Unreleased]\n\n## [{{version}}] - ${today}/" CHANGELOG.md
     git add packages/dino-ai-py/pyproject.toml CHANGELOG.md
     git commit -m "release: v{{version}}"
     git tag "v{{version}}"
