@@ -1,0 +1,92 @@
+catalogVersion: 1
+provider: "doubao"
+defaultApi: "openai-completions"
+baseUrl: "https://ark.cn-beijing.volces.com/api/v3"
+updatedAt: "2026-05-11T00:00:00Z"
+
+models:
+  doubao-seed-1.6:
+    name: "Doubao Seed 1.6"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: true
+      vision: true
+      toolCalling: true
+      supportedThinkingLevels: ["low", "medium", "high"]
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.55
+      output: 2.19
+
+  doubao-1.5-pro-256k:
+    name: "Doubao 1.5 Pro 256K"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: false
+      vision: true
+      toolCalling: true
+    limits:
+      contextWindow: 256000
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.69
+      output: 1.38
+
+  doubao-1.5-pro-32k:
+    name: "Doubao 1.5 Pro 32K"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: false
+      vision: true
+      toolCalling: true
+    limits:
+      contextWindow: 32000
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.55
+      output: 1.10
+
+  doubao-1.5-lite-32k:
+    name: "Doubao 1.5 Lite 32K"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: false
+      vision: true
+      toolCalling: true
+    limits:
+      contextWindow: 32000
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.21
+      output: 0.41
+
+  doubao-1.5-thinking-pro:
+    name: "Doubao 1.5 Thinking Pro"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: true
+      vision: true
+      toolCalling: true
+      supportedThinkingLevels: ["low", "medium", "high"]
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 32768
+    pricing:
+      input: 2.76
+      output: 11.04
+
+  doubao-vision-pro-32k:
+    name: "Doubao Vision Pro 32K"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: false
+      vision: true
+      toolCalling: true
+    limits:
+      contextWindow: 32000
+      maxOutputTokens: 4096
+    pricing:
+      input: 1.38
+      output: 1.38
