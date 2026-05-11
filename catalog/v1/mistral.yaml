@@ -1,0 +1,111 @@
+catalogVersion: 1
+provider: "mistral"
+defaultApi: "mistral-conversations"
+baseUrl: "https://api.mistral.ai"
+updatedAt: "2026-05-11T00:00:00Z"
+
+models:
+  mistral-large-latest:
+    name: "Mistral Large (latest)"
+    capabilities:
+      reasoning: false
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 8192
+    pricing:
+      input: 2.0
+      output: 6.0
+      cacheRead: 0
+      cacheWrite: 0
+
+  mistral-medium-latest:
+    name: "Mistral Medium (latest)"
+    capabilities:
+      reasoning: false
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 8192
+    pricing:
+      input: 0.4
+      output: 2.0
+      cacheRead: 0
+      cacheWrite: 0
+
+  mistral-small-latest:
+    name: "Mistral Small (latest)"
+    capabilities:
+      reasoning: false
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 8192
+    pricing:
+      input: 0.1
+      output: 0.3
+      cacheRead: 0
+      cacheWrite: 0
+
+  codestral-latest:
+    name: "Codestral (latest)"
+    capabilities:
+      reasoning: false
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 256000
+      maxOutputTokens: 4096
+    pricing:
+      input: 0.3
+      output: 0.9
+      cacheRead: 0
+      cacheWrite: 0
+
+  devstral-medium-latest:
+    name: "Devstral Medium (latest)"
+    capabilities:
+      reasoning: false
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 128000
+    pricing:
+      input: 0.4
+      output: 2.0
+      cacheRead: 0
+      cacheWrite: 0
+
+  magistral-medium-latest:
+    name: "Magistral Medium (latest)"
+    capabilities:
+      reasoning: true
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 40000
+      maxOutputTokens: 40000
+    pricing:
+      input: 2.0
+      output: 6.0
+      cacheRead: 0
+      cacheWrite: 0
+
+  pixtral-large-latest:
+    name: "Pixtral Large (latest)"
+    capabilities:
+      reasoning: false
+      vision: true
+      toolCalling: true
+    limits:
+      contextWindow: 128000
+      maxOutputTokens: 8192
+    pricing:
+      input: 2.0
+      output: 6.0
+      cacheRead: 0
+      cacheWrite: 0

@@ -1,0 +1,50 @@
+catalogVersion: 1
+provider: "minimax"
+defaultApi: "openai-completions"
+baseUrl: "https://api.minimax.chat/v1"
+updatedAt: "2026-05-11T00:00:00Z"
+
+models:
+  MiniMax-M1:
+    name: "MiniMax M1"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: true
+      vision: true
+      toolCalling: true
+      supportedThinkingLevels: ["low", "medium", "high"]
+    limits:
+      contextWindow: 1000000
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.14
+      output: 0.55
+
+  MiniMax-T1:
+    name: "MiniMax T1"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: true
+      vision: false
+      toolCalling: true
+      supportedThinkingLevels: ["low", "medium", "high"]
+    limits:
+      contextWindow: 131072
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.14
+      output: 0.55
+
+  abab7-chat:
+    name: "ABAB 7 Chat"
+    compatProfile: "GENERIC"
+    capabilities:
+      reasoning: false
+      vision: false
+      toolCalling: true
+    limits:
+      contextWindow: 245760
+      maxOutputTokens: 16384
+    pricing:
+      input: 0.14
+      output: 0.14
