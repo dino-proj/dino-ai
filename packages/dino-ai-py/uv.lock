@@ -414,7 +414,7 @@ wheels = [
 ]
 
 [[package]]
-name = "dino-ai"
+name = "dino-ai-py"
 version = "0.1.0"
 source = { editable = "." }
 
@@ -456,7 +456,7 @@ requires-dist = [
     { name = "anthropic", marker = "extra == 'anthropic'", specifier = ">=0.40" },
     { name = "boto3", marker = "extra == 'bedrock'", specifier = ">=1.35" },
     { name = "build", marker = "extra == 'dev'", specifier = ">=1.0" },
-    { name = "dino-ai", extras = ["anthropic", "openai", "google", "bedrock", "mistral"], marker = "extra == 'all'" },
+    { name = "dino-ai-py", extras = ["anthropic", "openai", "google", "bedrock", "mistral"], marker = "extra == 'all'" },
     { name = "google-genai", marker = "extra == 'google'", specifier = ">=1.0" },
     { name = "mistralai", marker = "extra == 'mistral'", specifier = ">=2.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.13" },
