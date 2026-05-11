@@ -1,0 +1,40 @@
+catalogVersion: 1
+provider: "deepseek"
+defaultApi: "openai-completions"
+baseUrl: "https://api.deepseek.com"
+updatedAt: "2026-05-11T00:00:00Z"
+
+models:
+  deepseek-v4-pro:
+    name: "DeepSeek V4 Pro"
+    compatProfile: "DEEPSEEK"
+    capabilities:
+      reasoning: true
+      vision: false
+      toolCalling: true
+      supportedThinkingLevels: ["high", "xhigh"]
+    limits:
+      contextWindow: 1000000
+      maxOutputTokens: 384000
+    pricing:
+      input: 0.435
+      output: 0.87
+      cacheRead: 0.003625
+      cacheWrite: 0
+
+  deepseek-v4-flash:
+    name: "DeepSeek V4 Flash"
+    compatProfile: "DEEPSEEK"
+    capabilities:
+      reasoning: true
+      vision: false
+      toolCalling: true
+      supportedThinkingLevels: ["high", "xhigh"]
+    limits:
+      contextWindow: 1000000
+      maxOutputTokens: 384000
+    pricing:
+      input: 0.14
+      output: 0.28
+      cacheRead: 0.0028
+      cacheWrite: 0
