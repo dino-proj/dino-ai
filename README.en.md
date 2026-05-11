@@ -19,17 +19,17 @@ Unified Python LLM API. Multi-provider, middleware pipeline, async-first, zero r
 ## Installation
 
 ```bash
-pip install dino-ai
+pip install dino-ai-py
 ```
 
 Install optional dependencies per provider:
 
 ```bash
-pip install "dino-ai[openai]"      # OpenAI / DeepSeek / Groq / xAI / Together / Mistral etc.
-pip install "dino-ai[anthropic]"   # Anthropic Claude
-pip install "dino-ai[google]"      # Google Gemini
-pip install "dino-ai[bedrock]"     # AWS Bedrock (boto3)
-pip install "dino-ai[all]"         # Everything
+pip install "dino-ai-py[openai]"      # OpenAI / DeepSeek / Groq / xAI / Together / Mistral etc.
+pip install "dino-ai-py[anthropic]"   # Anthropic Claude
+pip install "dino-ai-py[google]"      # Google Gemini
+pip install "dino-ai-py[bedrock]"     # AWS Bedrock (boto3)
+pip install "dino-ai-py[all]"         # Everything
 ```
 
 ## Quick Start

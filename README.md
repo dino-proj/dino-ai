@@ -19,17 +19,17 @@
 ## 安装
 
 ```bash
-pip install dino-ai
+pip install dino-ai-py
 ```
 
 按厂商安装可选依赖：
 
 ```bash
-pip install "dino-ai[openai]"      # OpenAI / DeepSeek / Groq / xAI / Together / Mistral 等
-pip install "dino-ai[anthropic]"   # Anthropic Claude
-pip install "dino-ai[google]"      # Google Gemini
-pip install "dino-ai[bedrock]"     # AWS Bedrock (boto3)
-pip install "dino-ai[all]"         # 全部
+pip install "dino-ai-py[openai]"      # OpenAI / DeepSeek / Groq / xAI / Together / Mistral 等
+pip install "dino-ai-py[anthropic]"   # Anthropic Claude
+pip install "dino-ai-py[google]"      # Google Gemini
+pip install "dino-ai-py[bedrock]"     # AWS Bedrock (boto3)
+pip install "dino-ai-py[all]"         # 全部
 ```
 
 ## 快速开始
