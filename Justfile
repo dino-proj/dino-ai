@@ -4,7 +4,7 @@
 
 # Generate Python model constants from catalog/ YAML
 generate-models:
-    cd packages/dino-ai-py && uv run python scripts/generate_models.py
+    cd packages/dino-ai-py && uv run --extra dev python scripts/generate_models.py
 
 # ── Python ───────────────────────────────────────────────────────
 
