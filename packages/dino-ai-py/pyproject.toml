@@ -1,5 +1,5 @@
 [project]
-name = "dino-ai"
+name = "dino-ai-py"
 version = "0.1.0"
 description = "Unified LLM API with automatic model discovery, structured errors, and composable middleware"
 readme = "README.md"
@@ -30,7 +30,7 @@ openai = ["openai>=1.50"]
 google = ["google-genai>=1.0"]
 bedrock = ["boto3>=1.35"]
 mistral = ["mistralai>=2.0"]
-all = ["dino-ai[anthropic,openai,google,bedrock,mistral]"]
+all = ["dino-ai-py[anthropic,openai,google,bedrock,mistral]"]
 dev = [
     "build>=1.0",
     "mypy>=1.13",
