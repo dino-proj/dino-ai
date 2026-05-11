@@ -8,7 +8,11 @@ generate-models:
 
 # ── Python ───────────────────────────────────────────────────────
 
-install:
+# Copy root README into package dir (needed for editable install / build)
+_copy-readme:
+    cp -f README.md README.en.md packages/dino-ai-py/ 2>/dev/null || true
+
+install: _copy-readme
     cd packages/dino-ai-py && uv sync --all-extras
 
 test: generate-models
@@ -20,9 +24,7 @@ typecheck:
 lint:
     cd packages/dino-ai-py && uv run ruff check src tests
 
-check: lint typecheck test
+check: install lint typecheck test
 
-build: generate-models
-    cp README.md README.en.md packages/dino-ai-py/
+build: _copy-readme generate-models
     cd packages/dino-ai-py && uv build
-    rm packages/dino-ai-py/README.md packages/dino-ai-py/README.en.md
