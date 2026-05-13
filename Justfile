@@ -77,5 +77,11 @@ release version:
     git tag "v$version"
     git push && git push --tags
 
+    # ── Create GitHub Release ──
+    # Extract release notes from CHANGELOG (content between this version and next heading)
+    notes=$(sed -n "/^## \[$version\]/,/^## \[/{/^## \[/!p;}" CHANGELOG.md | sed '/^$/d')
+    if [ -z "$notes" ]; then notes="Release v$version"; fi
+    echo "$notes" | gh release create "v$version" --title "v$version" --notes-file -
+
     echo ""
     echo "Released v$version. GitHub Actions will publish to PyPI."
