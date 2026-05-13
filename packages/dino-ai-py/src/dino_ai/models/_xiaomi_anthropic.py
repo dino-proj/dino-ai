@@ -1,0 +1,168 @@
+"""Auto-generated models for xiaomi-anthropic.
+
+DO NOT EDIT — run `python scripts/generate_models.py` to regenerate.
+"""
+
+from __future__ import annotations
+
+from dino_ai.model import (
+    Model,
+    ModelCapabilities,
+    ModelLimits,
+    ModelPricing,
+    ModelThinkingLevel,
+)
+
+
+class XiaomiAnthropic:
+    """Models for xiaomi-anthropic."""
+
+    MIMO_V2_FLASH = Model(
+        id="mimo-v2-flash",
+        name="MiMo-V2-Flash",
+        api="anthropic-messages",
+        provider="xiaomi-anthropic",
+        base_url="https://api.xiaomimimo.com/anthropic",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=False,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=262144,
+            max_output_tokens=65536,
+        ),
+        pricing=ModelPricing(
+            input=0.1,
+            output=0.3,
+            cache_read=0.01,
+            cache_write=0,
+        ),
+    )
+
+    MIMO_V2_OMNI = Model(
+        id="mimo-v2-omni",
+        name="MiMo-V2-Omni",
+        api="anthropic-messages",
+        provider="xiaomi-anthropic",
+        base_url="https://api.xiaomimimo.com/anthropic",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=262144,
+            max_output_tokens=131072,
+        ),
+        pricing=ModelPricing(
+            input=0.4,
+            output=2,
+            cache_read=0.08,
+            cache_write=0,
+        ),
+    )
+
+    MIMO_V2_PRO = Model(
+        id="mimo-v2-pro",
+        name="MiMo-V2-Pro",
+        api="anthropic-messages",
+        provider="xiaomi-anthropic",
+        base_url="https://api.xiaomimimo.com/anthropic",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=False,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=1048576,
+            max_output_tokens=131072,
+        ),
+        pricing=ModelPricing(
+            input=1,
+            output=3,
+            cache_read=0.2,
+            cache_write=0,
+        ),
+    )
+
+    MIMO_V2_5 = Model(
+        id="mimo-v2.5",
+        name="MiMo-V2.5",
+        api="anthropic-messages",
+        provider="xiaomi-anthropic",
+        base_url="https://api.xiaomimimo.com/anthropic",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=1048576,
+            max_output_tokens=131072,
+        ),
+        pricing=ModelPricing(
+            input=0.4,
+            output=2,
+            cache_read=0.08,
+            cache_write=0,
+        ),
+    )
+
+    MIMO_V2_5_PRO = Model(
+        id="mimo-v2.5-pro",
+        name="MiMo-V2.5-Pro",
+        api="anthropic-messages",
+        provider="xiaomi-anthropic",
+        base_url="https://api.xiaomimimo.com/anthropic",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=False,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=1048576,
+            max_output_tokens=131072,
+        ),
+        pricing=ModelPricing(
+            input=1,
+            output=3,
+            cache_read=0.2,
+            cache_write=0,
+        ),
+    )

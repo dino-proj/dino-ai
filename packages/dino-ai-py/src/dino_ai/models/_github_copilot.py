@@ -1,0 +1,783 @@
+"""Auto-generated models for github-copilot.
+
+DO NOT EDIT — run `python scripts/generate_models.py` to regenerate.
+"""
+
+from __future__ import annotations
+
+from dino_ai.model import (
+    Model,
+    ModelCapabilities,
+    ModelLimits,
+    ModelPricing,
+    ModelThinkingLevel,
+)
+
+
+class GithubCopilot:
+    """Models for github-copilot."""
+
+    CLAUDE_HAIKU_4_5 = Model(
+        id="claude-haiku-4.5",
+        name="Claude Haiku 4.5",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=144000,
+            max_output_tokens=32000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    CLAUDE_OPUS_4_5 = Model(
+        id="claude-opus-4.5",
+        name="Claude Opus 4.5",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=160000,
+            max_output_tokens=32000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    CLAUDE_OPUS_4_6 = Model(
+        id="claude-opus-4.6",
+        name="Claude Opus 4.6",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=144000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    CLAUDE_OPUS_4_7 = Model(
+        id="claude-opus-4.7",
+        name="Claude Opus 4.7",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=144000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    CLAUDE_SONNET_4 = Model(
+        id="claude-sonnet-4",
+        name="Claude Sonnet 4",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=216000,
+            max_output_tokens=16000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    CLAUDE_SONNET_4_5 = Model(
+        id="claude-sonnet-4.5",
+        name="Claude Sonnet 4.5",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=144000,
+            max_output_tokens=32000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    CLAUDE_SONNET_4_6 = Model(
+        id="claude-sonnet-4.6",
+        name="Claude Sonnet 4.6",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=200000,
+            max_output_tokens=32000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GEMINI_2_5_PRO = Model(
+        id="gemini-2.5-pro",
+        name="Gemini 2.5 Pro",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=False,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GEMINI_3_FLASH_PREVIEW = Model(
+        id="gemini-3-flash-preview",
+        name="Gemini 3 Flash",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GEMINI_3_PRO_PREVIEW = Model(
+        id="gemini-3-pro-preview",
+        name="Gemini 3 Pro Preview",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GEMINI_3_1_PRO_PREVIEW = Model(
+        id="gemini-3.1-pro-preview",
+        name="Gemini 3.1 Pro Preview",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_4_1 = Model(
+        id="gpt-4.1",
+        name="GPT-4.1",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=False,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=16384,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_4O = Model(
+        id="gpt-4o",
+        name="GPT-4o",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=False,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=4096,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5 = Model(
+        id="gpt-5",
+        name="GPT-5",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_MINI = Model(
+        id="gpt-5-mini",
+        name="GPT-5-mini",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=264000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_1 = Model(
+        id="gpt-5.1",
+        name="GPT-5.1",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=264000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_1_CODEX = Model(
+        id="gpt-5.1-codex",
+        name="GPT-5.1-Codex",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_1_CODEX_MAX = Model(
+        id="gpt-5.1-codex-max",
+        name="GPT-5.1-Codex-max",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_1_CODEX_MINI = Model(
+        id="gpt-5.1-codex-mini",
+        name="GPT-5.1-Codex-mini",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_2 = Model(
+        id="gpt-5.2",
+        name="GPT-5.2",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=264000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_2_CODEX = Model(
+        id="gpt-5.2-codex",
+        name="GPT-5.2-Codex",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_3_CODEX = Model(
+        id="gpt-5.3-codex",
+        name="GPT-5.3-Codex",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_4 = Model(
+        id="gpt-5.4",
+        name="GPT-5.4",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_4_MINI = Model(
+        id="gpt-5.4-mini",
+        name="GPT-5.4 Mini",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GPT_5_5 = Model(
+        id="gpt-5.5",
+        name="GPT-5.5",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=True,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=400000,
+            max_output_tokens=128000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
+
+    GROK_CODE_FAST_1 = Model(
+        id="grok-code-fast-1",
+        name="Grok Code Fast 1",
+        api="openai-completions",
+        provider="github-copilot",
+        base_url="https://api.githubcopilot.com",
+        capabilities=ModelCapabilities(
+            reasoning=True,
+            vision=False,
+            tool_calling=True,
+            streaming=True,
+            supported_thinking_levels=(
+                ModelThinkingLevel.OFF,
+                ModelThinkingLevel.LOW,
+                ModelThinkingLevel.MEDIUM,
+                ModelThinkingLevel.HIGH,
+            ),
+        ),
+        limits=ModelLimits(
+            context_window=128000,
+            max_output_tokens=64000,
+        ),
+        pricing=ModelPricing(
+            input=0,
+            output=0,
+            cache_read=0,
+            cache_write=0,
+        ),
+    )
