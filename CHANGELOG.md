@@ -4,7 +4,29 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.1.3] - 2026-05-11
+## [0.2.0] - 2026-05-14
+
+### Changed
+
+- **模型目录自动生成** — 从手动维护的 17 个 YAML 文件切换为从 [models.dev](https://models.dev) API 自动拉取，模型数从 108 增至 822，覆盖 30+ 厂商
+- **多文件拆分** — `models.py` 拆分为 `models/` 包，每个厂商独立文件（`_anthropic.py`, `_openai.py` 等），按需导入
+- **API/URL 自动推导** — 从 models.dev 的 `npm` 和 `api` 字段自动推导协议类型和 base URL，不再手工维护
+- **双协议支持** — 厂商支持多套 API 协议时自动生成多个变体（如 `xiaomi` + `xiaomi-anthropic`）
+
+### Added
+
+- 新增厂商：DeepSeek、OpenRouter、StepFun、Zhipu、Alibaba (DashScope)、Xiaomi/MiMo（含 Anthropic 协议变体）
+- `HARDCODED_PROVIDERS` 机制用于 models.dev 未覆盖的额外协议变体
+- `AGENTS.md` — AI 编码助手指令文件，加速 Agent 上手
+
+### Removed
+
+- **13 个手动维护的 YAML 文件** — `catalog/v1/` 中已被 models.dev 覆盖的厂商文件（anthropic、bedrock、deepseek、google、groq、kimi、minimax、mistral、openai、openrouter、stepfun、xai、zhipu），保留 4 个 models.dev 未覆盖的厂商（baichuan、doubao、mimo、qwen）
+
+### Fixed
+
+- `intro.svg` 标题从 "Dino Sql Builder" 修正为 "Dino AI"
+- README 示例：修复 `model.pricing.input_per_million` → `model.pricing.input`，补充 `TextContent` 导入，更新模型常量名
 
 ## [0.1.0] - 2026-05-11
 
