@@ -31,17 +31,51 @@ build: _copy-readme generate-models
 
 # ── Release ──────────────────────────────────────────────────────
 
-# Bump version, commit, and tag. Usage: just release 0.2.0
+# Bump version, commit, tag, push. GitHub Actions publishes to PyPI.
+# Usage: just release 0.2.1
 release version:
     #!/usr/bin/env bash
     set -euo pipefail
-    if [ -z "{{version}}" ]; then echo "Usage: just release <version>"; exit 1; fi
-    # Update pyproject.toml
-    sed -i '' 's/^version = ".*"/version = "{{version}}"/' packages/dino-ai-py/pyproject.toml
-    # Update CHANGELOG heading
+
+    version="{{version}}"
+    if [ -z "$version" ]; then echo "Usage: just release <version>"; exit 1; fi
+
+    # ── Pre-checks ──
+    if [ -n "$(git status --porcelain)" ]; then
+        echo "ERROR: Working tree is not clean. Commit or stash changes first."
+        exit 1
+    fi
+
+    current_branch=$(git branch --show-current)
+    if [ "$current_branch" != "main" ]; then
+        echo "ERROR: Must release from main branch (currently on '$current_branch')."
+        exit 1
+    fi
+
+    git pull --rebase
+
+    # ── Validate ──
+    echo "Running full check (install + lint + typecheck + test)..."
+    just check
+
+    # ── Bump version ──
+    sed -i '' "s/^version = \".*\"/version = \"$version\"/" packages/dino-ai-py/pyproject.toml
+
+    # ── Update CHANGELOG ──
     today=$(date +%Y-%m-%d)
-    sed -i '' "s/^## \[Unreleased\]/## [Unreleased]\n\n## [{{version}}] - ${today}/" CHANGELOG.md
+    # Replace "## [Unreleased]" with "## [Unreleased]\n\n## [version] - date"
+    sed -i '' "s/^## \[Unreleased\]/## [Unreleased]\\
+\\
+## [$version] - $today/" CHANGELOG.md
+
+    # ── Build (verify packaging) ──
+    just build
+
+    # ── Commit, tag, push ──
     git add packages/dino-ai-py/pyproject.toml CHANGELOG.md
-    git commit -m "release: v{{version}}"
-    git tag "v{{version}}"
-    echo "Done. Run 'git push && git push --tags' to publish."
+    git commit -m "release: v$version"
+    git tag "v$version"
+    git push && git push --tags
+
+    echo ""
+    echo "Released v$version. GitHub Actions will publish to PyPI."
