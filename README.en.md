@@ -1,13 +1,20 @@
-# dino-ai
+<div align="center">
+  <div><img src="./.assert/intro.svg" style="max-height:300px"  /></div>
+</div>
+## 🦖 Dino Ai
+
 
 Unified Python LLM API. Multi-provider, middleware pipeline, async-first, zero required dependencies.
+
+> Built with **DeepSeek V4 Pro** — the code in this repository was developed with DeepSeek V4 Pro assistance.
 
 [中文文档](README.md)
 
 ## Features
 
-- **Unified interface** — One API for OpenAI, Anthropic, Google Gemini, AWS Bedrock, Mistral, DeepSeek, xAI, and 17+ providers
-- **108 built-in models** — Auto-generated from YAML catalog, ready to use
+- **Unified interface** — One API for OpenAI, Anthropic, Google Gemini, AWS Bedrock, Mistral, DeepSeek, xAI, and 30+ providers
+- **822 built-in models** — Auto-generated from [models.dev](https://models.dev), ready to use
+- **Dual protocol support** — When a provider supports multiple APIs (e.g. Xiaomi supports both OpenAI and Anthropic protocols), both variants are available
 - **Streaming events** — Async iterator yielding text, thinking, and tool call blocks
 - **Middleware pipeline** — Logging, retry, cost guard — composable and extensible
 - **Structured errors** — 12 `ErrorCategory` variants for rate limits, context overflow, etc.
@@ -53,7 +60,7 @@ async def main():
     print(message.text)
 
     # Option 2: Stream events
-    stream = client.stream("claude-sonnet-4-20250514", context)
+    stream = client.stream("claude-sonnet-4-0", context)
     async for event in stream:
         print(event)
 
@@ -64,14 +71,16 @@ asyncio.run(main())
 
 ### Models
 
-108 model constants grouped by provider:
+822 model constants grouped by provider. Each provider has its own file for tree-shakable imports:
 
 ```python
-from dino_ai.models import Openai, Anthropic, Google
+from dino_ai.models import Openai, Anthropic, Google, Deepseek
 
 model = Openai.GPT_4O               # gpt-4o
-model = Anthropic.CLAUDE_SONNET_4    # claude-sonnet-4-20250514
+model = Anthropic.CLAUDE_SONNET_4_0  # claude-sonnet-4-0
 model = Google.GEMINI_2_5_PRO        # gemini-2.5-pro
+model = Deepseek.DEEPSEEK_V4_PRO     # deepseek-v4-pro
+model = Deepseek.DEEPSEEK_V4_PRO     # deepseek-v4-pro
 
 # Or use strings directly
 message = await client.complete("gpt-4o", context)
@@ -83,13 +92,36 @@ Each `Model` carries capability declarations, context window size, pricing, and 
 model = Openai.GPT_4O
 print(model.capabilities.vision)       # True
 print(model.limits.context_window)     # 128000
-print(model.pricing.input_per_million) # 2.5
+print(model.pricing.input)             # 2.5 ($/M tokens)
+```
+
+Browse all models:
+
+```python
+from dino_ai.models import ALL_MODELS
+
+providers = sorted(set(m.provider for m in ALL_MODELS))
+print(providers)
+
+openai_models = [m for m in ALL_MODELS if m.provider == "openai"]
+for m in openai_models[:5]:
+    print(f"{m.id}: {m.name}")
+```
+
+Dual-protocol providers — same models, different API protocols:
+
+```python
+from dino_ai.models._xiaomi import Xiaomi
+from dino_ai.models._xiaomi_anthropic import XiaomiAnthropic
+
+print(Xiaomi.MIMO_V2_5_PRO.api)           # openai-completions
+print(XiaomiAnthropic.MIMO_V2_5_PRO.api)  # anthropic-messages
 ```
 
 ### Context and Messages
 
 ```python
-from dino_ai import Context, UserMessage, AssistantMessage, ToolResultMessage, Tool
+from dino_ai import Context, UserMessage, AssistantMessage, ToolResultMessage, Tool, TextContent
 
 # Simple conversation
 context = Context(
@@ -236,7 +268,7 @@ context.messages.append(UserMessage(content="Continue"))
 
 # Seamlessly switch to Claude
 # transform_messages handles thinking block format differences automatically
-message = await client.complete("claude-sonnet-4-20250514", context)
+message = await client.complete("claude-sonnet-4-0", context)
 ```
 
 ### SimpleStream — Unified Reasoning Levels
@@ -249,9 +281,9 @@ from dino_ai import SimpleStreamOptions, ThinkingLevel
 options = SimpleStreamOptions(reasoning=ThinkingLevel.HIGH)
 
 # Same code, different models — automatically adapted
-await client.complete_simple("o3-mini", context, options)          # OpenAI reasoning_effort
-await client.complete_simple("claude-sonnet-4-20250514", context, options)  # Anthropic budget_tokens
-await client.complete_simple("gemini-2.5-pro", context, options)   # Google thinking budget
+await client.complete_simple("gpt-5.1-codex", context, options)     # OpenAI reasoning_effort
+await client.complete_simple("claude-sonnet-4-0", context, options)    # Anthropic budget_tokens
+await client.complete_simple("gemini-2.5-pro", context, options)       # Google thinking budget
 ```
 
 ## Supported Providers
@@ -262,23 +294,28 @@ await client.complete_simple("gemini-2.5-pro", context, options)   # Google thin
 | Anthropic | `anthropic-messages` | `AnthropicProvider` |
 | Google Gemini | `google-generative-ai` | `GoogleProvider` |
 | AWS Bedrock | `bedrock-converse-stream` | `BedrockProvider` |
-| Azure OpenAI | `azure-openai` | `AzureOpenAIProvider` |
+| Azure OpenAI | `azure-openai-responses` | `AzureOpenAIProvider` |
 | DeepSeek | `openai-completions` | `OpenAICompletionsProvider` |
 | Groq | `openai-completions` | `OpenAICompletionsProvider` |
 | xAI (Grok) | `openai-completions` | `OpenAICompletionsProvider` |
 | Mistral | `openai-completions` | `OpenAICompletionsProvider` |
 | Together | `openai-completions` | `OpenAICompletionsProvider` |
 | OpenRouter | `openai-completions` | `OpenAICompletionsProvider` |
+| Fireworks | `anthropic-messages` | `AnthropicProvider` |
+| Cerebras | `openai-completions` | `OpenAICompletionsProvider` |
+| HuggingFace | `openai-completions` | `OpenAICompletionsProvider` |
+| Xiaomi/MiMo | `openai-completions` / `anthropic-messages` | Dual protocol, both variants auto-generated |
+| Alibaba (DashScope) | `openai-completions` | `OpenAICompletionsProvider` |
 | Baichuan | `openai-completions` | `OpenAICompletionsProvider` |
 | Doubao | `openai-completions` | `OpenAICompletionsProvider` |
-| Kimi | `openai-completions` | `OpenAICompletionsProvider` |
-| Qwen | `openai-completions` | `OpenAICompletionsProvider` |
+| Kimi | `anthropic-messages` | `AnthropicProvider` |
 | StepFun | `openai-completions` | `OpenAICompletionsProvider` |
 | Zhipu | `openai-completions` | `OpenAICompletionsProvider` |
-| MiniMax | `openai-completions` | `OpenAICompletionsProvider` |
-| MiMo | `openai-completions` | `OpenAICompletionsProvider` |
+| MiniMax | `anthropic-messages` | `AnthropicProvider` |
+| Moonshot | `openai-completions` | `OpenAICompletionsProvider` |
+| SiliconFlow | `openai-completions` | `OpenAICompletionsProvider` |
 
-OpenAI-compatible providers share `OpenAICompletionsProvider`, with `OpenAICompatProfile` auto-adapting per-provider differences (thinking format, max_tokens field name, usage reporting, etc.).
+OpenAI-compatible providers share `OpenAICompletionsProvider`; Anthropic-compatible providers share `AnthropicProvider`. Built-in profiles auto-adapt per-provider differences (thinking format, max_tokens field name, usage reporting, etc.).
 
 ## Environment Variables
 
