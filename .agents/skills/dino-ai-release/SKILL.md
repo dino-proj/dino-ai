@@ -3,7 +3,7 @@ name: dino-ai-release
 version: 0.1.0
 description: Release a new version of dino-ai Python SDK. Use when the user asks to release, publish, or bump the version of dino-ai.
 requires:
-  bins: ["just", "git", "uv"]
+  bins: ["just", "git", "gh", "uv"]
 ---
 
 # dino-ai Release Skill
@@ -86,6 +86,7 @@ This single command will:
 5. Update CHANGELOG (`[Unreleased]` → `[version] - date`)
 6. Build the package (verify it packages correctly)
 7. Commit, tag, and push
+8. Create GitHub Release with notes extracted from CHANGELOG
 
 GitHub Actions will then automatically publish to PyPI when it sees the `v*` tag.
 
