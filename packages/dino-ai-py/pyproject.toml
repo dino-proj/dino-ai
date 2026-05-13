@@ -1,6 +1,6 @@
 [project]
 name = "dino-ai-py"
-version = "0.1.3"
+version = "0.2.0"
 description = "Unified LLM API with automatic model discovery, structured errors, and composable middleware"
 readme = "README.md"
 license = "Apache-2.0"
