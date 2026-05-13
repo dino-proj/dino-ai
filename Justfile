@@ -63,10 +63,8 @@ release version:
 
     # ── Update CHANGELOG ──
     today=$(date +%Y-%m-%d)
-    # Replace "## [Unreleased]" with "## [Unreleased]\n\n## [version] - date"
-    sed -i '' "s/^## \[Unreleased\]/## [Unreleased]\\
-\\
-## [$version] - $today/" CHANGELOG.md
+    # Insert new version heading after "## [Unreleased]"
+    awk -v ver="$version" -v d="$today" '{print} /^## \[Unreleased\]/{print ""; print "## [" ver "] - " d}' CHANGELOG.md > CHANGELOG.tmp && mv CHANGELOG.tmp CHANGELOG.md
 
     # ── Build (verify packaging) ──
     just build
