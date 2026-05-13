@@ -1,13 +1,19 @@
-# dino-ai
+<div align="center">
+  <div><img src="./.assert/intro.svg" style="max-height:300px"  /></div>
+</div>
+## 🦖 Dino Ai
 
 统一的 Python LLM API。多厂商、中间件管道、异步优先、零必选依赖。
+
+> Built with **DeepSeek V4 Pro** — 本项目代码由 DeepSeek V4 Pro 辅助生成。
 
 [English](README.en.md)
 
 ## 特性
 
-- **统一接口** — 一套 API 调用 OpenAI、Anthropic、Google Gemini、AWS Bedrock、Mistral、DeepSeek、xAI 等 17 家厂商
-- **108 个预置模型** — YAML 目录自动生成，开箱即用
+- **统一接口** — 一套 API 调用 OpenAI、Anthropic、Google Gemini、AWS Bedrock、Mistral、DeepSeek、xAI 等 30+ 厂商
+- **822 个预置模型** — 从 [models.dev](https://models.dev) 自动拉取，开箱即用
+- **双协议支持** — 厂商支持多套 API 时（如 Xiaomi 同时支持 OpenAI 和 Anthropic 协议），同时提供两种变体
 - **流式事件** — 异步迭代器逐块返回文本、思维链、工具调用
 - **中间件管道** — 日志、重试、费用上限，可自由组合或自定义
 - **结构化错误** — 12 种 `ErrorCategory`，统一处理速率限制、上下文溢出等
@@ -54,7 +60,7 @@ async def main():
     print(message.text)
 
     # 方式 2: 流式逐块接收
-    stream = client.stream("claude-sonnet-4-20250514", context)
+    stream = client.stream("claude-sonnet-4-0", context)
     async for event in stream:
         print(event)
 
@@ -65,16 +71,15 @@ asyncio.run(main())
 
 ### 模型
 
-108 个模型常量，按厂商分组：
+822 个模型常量，按厂商分组。每个厂商一个独立文件，按需导入：
 
 ```python
-from dino_ai.models import Openai, Anthropic, Google
+from dino_ai.models import Openai, Anthropic, Google, Deepseek
 
 model = Openai.GPT_4O               # gpt-4o
-model = Anthropic.CLAUDE_SONNET_4    # claude-sonnet-4-20250514
+model = Anthropic.CLAUDE_SONNET_4_0  # claude-sonnet-4-0
 model = Google.GEMINI_2_5_PRO        # gemini-2.5-pro
-
-# 也可以直接用字符串
+model = Deepseek.DEEPSEEK_V4_PRO     # deepseek-v4-pro
 message = await client.complete("gpt-4o", context)
 ```
 
@@ -84,13 +89,39 @@ message = await client.complete("gpt-4o", context)
 model = Openai.GPT_4O
 print(model.capabilities.vision)       # True
 print(model.limits.context_window)     # 128000
-print(model.pricing.input_per_million) # 2.5
+print(model.pricing.input)             # 2.5 ($/M tokens)
+```
+
+浏览所有模型：
+
+```python
+from dino_ai.models import ALL_MODELS
+
+# 列出所有厂商
+providers = sorted(set(m.provider for m in ALL_MODELS))
+print(providers)
+
+# 按厂商筛选
+openai_models = [m for m in ALL_MODELS if m.provider == "openai"]
+for m in openai_models[:5]:
+    print(f"{m.id}: {m.name}")
+```
+
+双协议厂商 — 同一个厂商的不同 API 协议作为独立 provider：
+
+```python
+from dino_ai.models._xiaomi import Xiaomi           # OpenAI 兼容协议
+from dino_ai.models._xiaomi_anthropic import XiaomiAnthropic  # Anthropic 协议
+
+# 模型列表相同，API 协议和 base URL 不同
+print(Xiaomi.MIMO_V2_5_PRO.api)           # openai-completions
+print(XiaomiAnthropic.MIMO_V2_5_PRO.api)  # anthropic-messages
 ```
 
 ### 上下文与消息
 
 ```python
-from dino_ai import Context, UserMessage, AssistantMessage, ToolResultMessage, Tool
+from dino_ai import Context, UserMessage, AssistantMessage, ToolResultMessage, Tool, TextContent
 
 # 简单对话
 context = Context(
@@ -239,7 +270,7 @@ context.messages.append(UserMessage(content="继续"))
 
 # 无缝切换到 Claude 继续对话
 # transform_messages 自动处理 thinking block 格式差异
-message = await client.complete("claude-sonnet-4-20250514", context)
+message = await client.complete("claude-sonnet-4-0", context)
 ```
 
 ### SimpleStream — 统一推理级别
@@ -253,9 +284,9 @@ from dino_ai import SimpleStreamOptions, ThinkingLevel
 options = SimpleStreamOptions(reasoning=ThinkingLevel.HIGH)
 
 # 同一套代码，不同模型自动适配
-await client.complete_simple("o3-mini", context, options)          # OpenAI reasoning_effort
-await client.complete_simple("claude-sonnet-4-20250514", context, options)  # Anthropic budget_tokens
-await client.complete_simple("gemini-2.5-pro", context, options)   # Google thinking budget
+await client.complete_simple("gpt-5.1-codex", context, options)     # OpenAI reasoning_effort
+await client.complete_simple("claude-sonnet-4-0", context, options)    # Anthropic budget_tokens
+await client.complete_simple("gemini-2.5-pro", context, options)       # Google thinking budget
 ```
 
 ## 支持的厂商
@@ -266,23 +297,28 @@ await client.complete_simple("gemini-2.5-pro", context, options)   # Google thin
 | Anthropic | `anthropic-messages` | `AnthropicProvider` |
 | Google Gemini | `google-generative-ai` | `GoogleProvider` |
 | AWS Bedrock | `bedrock-converse-stream` | `BedrockProvider` |
-| Azure OpenAI | `azure-openai` | `AzureOpenAIProvider` |
+| Azure OpenAI | `azure-openai-responses` | `AzureOpenAIProvider` |
 | DeepSeek | `openai-completions` | `OpenAICompletionsProvider` |
 | Groq | `openai-completions` | `OpenAICompletionsProvider` |
 | xAI (Grok) | `openai-completions` | `OpenAICompletionsProvider` |
 | Mistral | `openai-completions` | `OpenAICompletionsProvider` |
 | Together | `openai-completions` | `OpenAICompletionsProvider` |
 | OpenRouter | `openai-completions` | `OpenAICompletionsProvider` |
+| Fireworks | `anthropic-messages` | `AnthropicProvider` |
+| Cerebras | `openai-completions` | `OpenAICompletionsProvider` |
+| HuggingFace | `openai-completions` | `OpenAICompletionsProvider` |
+| Xiaomi/MiMo | `openai-completions` / `anthropic-messages` | 双协议，自动提供两种 variant |
+| 阿里云 (DashScope) | `openai-completions` | `OpenAICompletionsProvider` |
 | 百川 | `openai-completions` | `OpenAICompletionsProvider` |
 | 豆包 | `openai-completions` | `OpenAICompletionsProvider` |
-| Kimi | `openai-completions` | `OpenAICompletionsProvider` |
-| 通义千问 | `openai-completions` | `OpenAICompletionsProvider` |
+| Kimi | `anthropic-messages` | `AnthropicProvider` |
 | 阶跃星辰 | `openai-completions` | `OpenAICompletionsProvider` |
 | 智谱 | `openai-completions` | `OpenAICompletionsProvider` |
-| MiniMax | `openai-completions` | `OpenAICompletionsProvider` |
-| MiMo | `openai-completions` | `OpenAICompletionsProvider` |
+| MiniMax | `anthropic-messages` | `AnthropicProvider` |
+| Moonshot | `openai-completions` | `OpenAICompletionsProvider` |
+| SiliconFlow | `openai-completions` | `OpenAICompletionsProvider` |
 
-OpenAI 兼容的厂商共用 `OpenAICompletionsProvider`，通过 `OpenAICompatProfile` 自动适配各家差异（thinking 格式、max_tokens 字段名、usage 上报等）。
+OpenAI 兼容的厂商共用 `OpenAICompletionsProvider`，Anthropic 兼容的厂商共用 `AnthropicProvider`，通过内置 profile 自动适配各家差异（thinking 格式、max_tokens 字段名、usage 上报等）。
 
 ## 环境变量
 
