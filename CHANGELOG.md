@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-05-14
+
 ### Added
 
 - **发布流程改进** — `just release` 增加 git 状态检查、分支验证、自动运行完整测试、构建验证、GitHub Release 创建
