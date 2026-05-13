@@ -6,8 +6,6 @@ All notable changes to this project will be documented in this file.
 
 ## [0.2.0] - 2026-05-14
 
-## [0.2.0] - 2026-05-14
-
 ### Changed
 
 - **模型目录自动生成** — 从手动维护的 17 个 YAML 文件切换为从 [models.dev](https://models.dev) API 自动拉取，模型数从 108 增至 822，覆盖 30+ 厂商
