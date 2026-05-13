@@ -112,6 +112,7 @@ gh run list --limit 3
 | `just check` fails | Fix lint/type/test errors before retrying |
 | Push rejected | `git pull --rebase` then `git push && git push --tags` |
 | Tag already exists | Delete with `git tag -d v<ver>` and re-run |
+| Network timeout (GitHub 443) | Retry 2-3 times — common in China due to GFW interference |
 
 ## Post-Release
 
